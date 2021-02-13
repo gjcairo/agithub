@@ -85,9 +85,9 @@ class IncompleteRequest(object):
 
     def __getattr__(self, key):
         if key in self.client.http_methods:
-            htmlMethod = getattr(self.client, key)
-            wrapper = partial(htmlMethod, url=self.url)
-            return update_wrapper(wrapper, htmlMethod)
+            httpMethod = getattr(self.client, key)
+            wrapper = partial(httpMethod, url=self.url)
+            return update_wrapper(wrapper, httpMethod)
         else:
             self.url += '/' + str(key)
             return self
